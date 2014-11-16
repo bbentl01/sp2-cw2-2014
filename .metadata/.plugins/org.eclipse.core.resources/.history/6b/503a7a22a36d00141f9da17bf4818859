@@ -1,0 +1,54 @@
+import java.util.StringTokenizer;
+
+public class FractionCalculator {
+
+/*	private static String input;
+	
+	private static Fraction curr = new Fraction(0,1);
+	
+	public static void main(String args[]){
+		//set initial value as 0
+
+		// Provide welcome message
+		//System.out.println("Hello, this is Bradd's Calculator");
+		
+
+			
+		//}
+		
+		
+		//Provide exit message
+		System.out.println("Goodbye");*/
+
+	public Fraction evaluate (Fraction frac, String inputString){
+		
+		Fraction total = frac;
+		
+		Fraction fr = null;
+		
+		//Fraction n = new Fraction(first,second);
+		
+		String str = null;
+		String str1 = null;
+		
+		StringTokenizer st = new StringTokenizer(inputString," ");
+		while(st.hasMoreTokens()){
+			str = st.nextToken().toString();
+			if (str.contains("/")&& str.length()>1){
+				int first = Integer.parseInt(str.substring(0,(str.indexOf("/"))));
+				int second = Integer.parseInt(str.substring(str.indexOf("/")+1,str.length()));
+				fr = new Fraction(first,second);
+			}
+			str1 = st.nextToken().toString();
+			if(str1.contains("+")){
+			total = total.addition(fr);
+			}
+		}
+return total;
+
+		}
+		
+		
+	}
+	
+

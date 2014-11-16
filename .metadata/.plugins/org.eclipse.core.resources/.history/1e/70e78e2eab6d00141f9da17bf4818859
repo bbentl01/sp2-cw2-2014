@@ -1,0 +1,14 @@
+import org.junit.Test;
+
+
+public class FractionCalculatorTest {
+
+	@Test
+	public void test() {
+		FractionCalculator calc = new FractionCalculator();
+		Fraction fr = new Fraction(0,1);
+		calc.evaluate(fr,"+ 1") ;
+		System.out.println(calc.evaluate(fr,"+ 1"));
+
+	}	
+	}

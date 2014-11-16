@@ -1,0 +1,19 @@
+import org.junit.Test;
+
+
+public class FractionCalculatorTest {
+
+	@Test
+	public void test() {
+		FractionCalculator calc = new FractionCalculator();
+		Fraction fr = new Fraction(1,2);
+		System.out.println(calc.evaluate(fr,"+ 1/2 * 5 / 10"));
+		System.out.println(calc.evaluate(fr, "* 3"));
+	}
+	
+	public void test1(){
+		FractionCalculator calc1 = new FractionCalculator();;
+		calc1.main(null);;
+	}
+	
+	}

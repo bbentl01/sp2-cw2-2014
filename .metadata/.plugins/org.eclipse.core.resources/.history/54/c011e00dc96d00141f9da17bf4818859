@@ -1,0 +1,126 @@
+public class FractionCalculator {
+
+	private static String input;
+	
+	private static Fraction totalfr;
+	
+	public static void main(String args[]){
+		
+		//Initially set calculator to 0
+		totalfr = new Fraction(0,1);	
+		
+		// Provide welcome message
+		System.out.println("Hello, this is Bradd Bentley's Fraction Calculator");
+
+//		while(isQuit(input) == false){
+			FractionCalculator calc = new FractionCalculator();
+			calc.evaluate(totalfr, input);
+//		}
+	
+
+	}
+
+	public Fraction evaluate (Fraction frac, String inputString){
+		
+		Fraction total = frac;
+		
+		Fraction newfr = null;
+		
+		String str = inputString;
+		
+		String[] input = str.split("\\s+");
+		
+		for(int i = 0; i < input.length; i += 2){
+				//this checks for fractions for the odd inputs in the string
+				if(input[i].contains("/")&& input[i].length()>1){
+					int first = Integer.parseInt(input[i].substring(0,(input[i].indexOf("/"))));
+					int second = Integer.parseInt(input[i].substring(input[i].indexOf("/")+1,input[i].length()));
+					newfr = new Fraction(first,second);
+				}
+				if(isNumber(input[i].toString()) == true ){
+					int first = Integer.parseInt(input[i]);
+					int second = 1;
+					newfr = new Fraction(first,second);
+				}
+				if(input[i+1].contains("/")&& input[i+1].length()>1){
+					int first = Integer.parseInt(input[i+1].substring(0,(input[i+1].indexOf("/"))));
+					int second = Integer.parseInt(input[i+1].substring(input[i+1].indexOf("/")+1,input[i+1].length()));
+					newfr = new Fraction(first,second);
+				}
+				if(isNumber(input[i+1].toString()) == true ){
+					int first = Integer.parseInt(input[i+1]);
+					int second = 1;
+					newfr = new Fraction(first,second);
+				}
+				if(input[i].contains("+")){
+					total = total.addition(newfr);
+				}
+				if(input[i+1].contains("+")){
+					total = total.addition(newfr);
+				}
+				if(input[i].contains("-")){
+					total = total.subtraction(newfr);
+				}
+				if(input[i+1].contains("-")){
+					total = total.subtraction(newfr);
+				}
+				if(input[i].contains("*")){
+					total = total.multiply(newfr);
+				}
+				if(input[i+1].contains("*")){
+					total = total.multiply(newfr);
+				}
+				if(input[i].contains("/") && input[i].length()==1){
+					total = total.divide(newfr);
+				}
+				if(input[i+1].contains("/") && input[i+1].length()==1){
+					total = total.divide(newfr);
+				}
+		}
+		totalfr = total;
+		return total;
+
+		}
+		
+	public static boolean isNumber(String string){
+		try{
+			Integer.parseInt(string);
+		}catch (Exception e){
+			return false;
+		}
+		return true;
+		
+	}
+	
+	public Fraction clearCalculator(String inputString){
+		String str = inputString;
+		
+		String[] input = str.split("\\s+");
+		
+		for(int i = 0; i < input.length; i++){
+			if(input[i].toString() == "c" || input[i].toString() == "C" || input[i].toString() == "clear"){
+				//set FractionCalculator to 0/1
+				return totalfr = new Fraction(0,1); 
+			}
+		}
+		return totalfr;
+	}
+	
+	public static boolean isQuit(String inputString){
+		String str = inputString;
+		
+		String[] input = str.split("\\s+");
+		
+		for(int i = 0; i < input.length; i++){
+			if(input[i].toString() == "q" || input[i].toString() == "Q" || input[i].toString() == "quit"){
+				//Provide exit message
+				System.out.println("Goodbye");
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	}
+	
+
